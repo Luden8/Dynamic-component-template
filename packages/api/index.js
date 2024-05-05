@@ -5,6 +5,7 @@ const yamlToJson = require('js-yaml');
 const bodyParser = require('koa-bodyparser');
 const { promises: Fs } =  require('fs')
 const cors = require('@koa/cors');
+const path = require('path')
 
 const FILENAME = 'template_config.yml'
 
@@ -20,7 +21,7 @@ router
 
 async function checkFileExists(ctx, next) {
     try {
-        await Fs.open(FILENAME)
+        await Fs.open(path.join(__dirname, FILENAME))
         ctx.fileExists = true
     } catch(e) {
         ctx.fileExists = false
@@ -36,7 +37,7 @@ async function getTemplate(ctx, next) {
      }
 
      try {
-         const file = await Fs.readFile(FILENAME, 'utf8')
+         const file = await Fs.readFile(path.join(__dirname, FILENAME), 'utf8')
          ctx.body = await yamlToJson.load(file);
      } catch (e) {
          ctx.status = 500;
@@ -49,7 +50,7 @@ async function updateTemplate(ctx) {
     doc.contents = ctx.request.body
 
     try {
-        await Fs.writeFile( './' + FILENAME, doc.toString(), 'utf8')
+        await Fs.writeFile(path.join(__dirname, FILENAME), doc.toString(), 'utf8')
         ctx.body = ctx.request.body
     } catch (err) {
         console.error(err)
