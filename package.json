@@ -1,0 +1,17 @@
+{
+  "name": "dynamic-components-generation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node ./packages/api/index.js",
+    "client": "pnpm --filter=@app/client dev",
+    "admin": "pnpm --filter=@app/admin dev",
+    "dev": "concurrently \"pnpm run server\" \"pnpm run client\" \"pnpm run admin\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
