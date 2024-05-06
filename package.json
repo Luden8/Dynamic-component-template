@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "pnpm": {
+    "overrides": {
+      "rollup": "npm:@rollup/wasm-node"
+    }
+  },
   "scripts": {
     "server": "node ./packages/api/index.js",
     "client": "pnpm --filter=@app/client dev",
@@ -12,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.17.1",
     "concurrently": "^8.2.2"
   }
 }
