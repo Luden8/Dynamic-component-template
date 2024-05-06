@@ -11,17 +11,11 @@ let loading = ref(false)
 const BASE_URL = 'http://localhost:3000'
 onMounted(async () => {
   loading.value = true
-  const [ responseTemplate, responseData ] =  await Promise.all([
-      fetch(`${BASE_URL}/template`),
-      fetch(`${BASE_URL}/data`),
-  ])
-  const templateData = await responseTemplate.json()
-  const data = await responseData.json()
+  const response = await fetch(`${BASE_URL}/template`)
+  const templateData = await response.json()
 
   loading.value = false
 
-  title.value = data.title;
-  description.value = data.description;
 
 
 
