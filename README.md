@@ -1,12 +1,7 @@
 # Dynamic template generation
 
-## Требования:
-- pnpm >= 6.32.12
-- node >= 16.19.0
-
 ## Запуск
-- Установка зависимостей - `pnpm install`
-- Запуск всех сервисов - `pnpm run dev`
+- Установка зависимостей - `docker-compose up`
 
 ## Окружение:
 - Client - `http://localhost:8000`
